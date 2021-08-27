@@ -1,12 +1,18 @@
 pipeline {
     agent any
 
+    tools { nodejs 'nodejs' }
+
     stages {
-        stage('Build') {
+        stage('Install dependencies') {
             steps {
-                nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
-                    sh 'npm config ls'
-                }
+                sh 'npm install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'npm run test:ci'
             }
         }
     }
