@@ -12,6 +12,7 @@ pipeline {
 
         stage('Test') {
             steps {
+                sh 'ls'
                 sh 'npm run test:ci'
             }
         }
